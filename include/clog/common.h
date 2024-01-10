@@ -34,6 +34,7 @@ constexpr
     static string_view_t level_string_views[]{CLOG_LEVEL_NAME_TRACE, CLOG_LEVEL_NAME_DEBUG,
                                               CLOG_LEVEL_NAME_INFO, CLOG_LEVEL_NAME_WARNING,
                                               CLOG_LEVEL_NAME_ERROR};
+const char* SIMPLE_LEVEL_NAMES[]{"T", "D", "I", "W", "E"};
 
 inline const string_view_t getLevelName(LogLevel log_level) {
     return level_string_views[static_cast<int>(log_level)];

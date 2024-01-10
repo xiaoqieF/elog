@@ -74,6 +74,9 @@ inline void PatternFormatter::handleFlag(char ch) {
         case 'l':
             formatters_.push_back(make_unique<details::LogLevelFormatter>());
             break;
+        case 'L':
+            formatters_.push_back(make_unique<details::SimpleLogLevelFormatter>());
+            break;
         case 't':
             formatters_.push_back(make_unique<details::TidFormatter>());
             break;

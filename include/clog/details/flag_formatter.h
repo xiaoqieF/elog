@@ -30,6 +30,15 @@ public:
     }
 };
 
+// '%L'
+class SimpleLogLevelFormatter final : public FlagFormatter {
+public:
+    void format(const details::LogMsg& msg, const tm&, memory_buf_t& dest) override {
+        const string_view_t level_name = SIMPLE_LEVEL_NAMES[static_cast<int>(msg.log_level)];
+        format_helper::appendStringView(level_name, dest);
+    }
+};
+
 // '%Y'
 class YearFormatter final : public FlagFormatter {
 public:
@@ -186,6 +195,8 @@ public:
         dest.push_back('[');
         msg.color_range_start = dest.size();
         format_helper::appendStringView(getLevelName(msg.log_level), dest);
+        // format_helper::appendStringView(SIMPLE_LEVEL_NAMES[static_cast<int>(msg.log_level)],
+        // dest);
         msg.color_range_end = dest.size();
         dest.push_back(']');
         dest.push_back(' ');
