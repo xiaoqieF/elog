@@ -25,6 +25,10 @@ struct LogMsg {
     size_t thread_id = 0;
     SourceLocation source;
     string_view_t payload;
+
+    // be set at flat_formatter
+    mutable size_t color_range_start = 0;
+    mutable size_t color_range_end = 0;
 };
 
 inline LogMsg::LogMsg(LogClock::time_point log_time,

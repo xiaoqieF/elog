@@ -184,7 +184,9 @@ public:
         dest.push_back(' ');
 
         dest.push_back('[');
+        msg.color_range_start = dest.size();
         format_helper::appendStringView(getLevelName(msg.log_level), dest);
+        msg.color_range_end = dest.size();
         dest.push_back(']');
         dest.push_back(' ');
 

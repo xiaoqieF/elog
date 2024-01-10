@@ -52,5 +52,29 @@ inline void createDir(const std::string& dir_path) {
     }
 }
 
+inline bool isColorTerminal() {
+    static const bool result = []() {
+        const char* env_colorterm_p = std::getenv("COLORTERM");
+        if (env_colorterm_p != nullptr) {
+            return true;
+        }
+
+        static constexpr std::array<const char*, 16> terms = {
+            {"ansi", "color", "console", "cygwin", "gnome", "konsole", "kterm", "linux", "msys",
+             "putty", "rxvt", "screen", "vt100", "xterm", "alacritty", "vt102"}};
+
+        const char* env_term_p = std::getenv("TERM");
+        if (env_term_p == nullptr) {
+            return false;
+        }
+
+        return std::any_of(terms.begin(), terms.end(), [&](const char* term) {
+            return std::strstr(env_term_p, term) != nullptr;
+        });
+    }();
+
+    return result;
+}
+
 } // namespace os
 } // namespace clog
