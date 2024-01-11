@@ -1,6 +1,7 @@
 #pragma once
 
 #define FMT_HEADER_ONLY // use fmtlib header only
+// #define CLOG_NO_SOURCE_LOC
 
 #include <chrono>
 #include <memory>

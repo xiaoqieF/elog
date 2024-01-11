@@ -13,8 +13,9 @@
 #include "clog/sinks/stdout_sink.h"
 
 int main() {
-    using namespace clog;
-    // AsyncLogger logger("log_name", std::make_shared<sinks::StdColorSinkMutex>());
+    // using namespace clog;
+    // AsyncLogger logger("log_name",
+    //                    std::make_shared<sinks::RotatingFileSinkMutex>("log/master.log"));
     // logger.setFlushLevel(LogLevel::NUM_LEVELS);
     // auto begin = std::chrono::steady_clock::now();
     // for (int i = 0; i < 100000; ++i) {
@@ -35,9 +36,9 @@ int main() {
     //           << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count()
     //           << " ms " << std::endl;
 
-    clog::error("{} world", 2.821312312);
+    CLOG_DEBUG("{} world", 2.821312312);
 
-    clog::debug("hello {}", 123);
+    CLOG_DEBUG("hello {}", 123);
     clog::info("{} {} {}", 1.2, 222, "hello");
     clog::trace("hello");
     // clog::setLogLevel(LogLevel::INFO);
@@ -47,5 +48,6 @@ int main() {
     clog::trace("hello");
     clog::trace("hello");
     clog::trace("hello");
+
     // std::this_thread::sleep_for(std::chrono::seconds(2));
 }

@@ -128,11 +128,28 @@ public:
 // '%u'
 class SourceLocFormatter final : public FlagFormatter {
 public:
+    static const char* basename(const char* filename) {
+        // if the size is 2 (1 character + null terminator) we can use the more efficient strrchr
+        // the branch will be elided by optimizations
+        if (sizeof(os::FOLDER_SEP) == 2) {
+            const char* rv = std::strrchr(filename, os::FOLDER_SEP[0]);
+            return rv != nullptr ? rv + 1 : filename;
+        } else {
+            const std::reverse_iterator<const char*> begin(filename + std::strlen(filename));
+            const std::reverse_iterator<const char*> end(filename);
+
+            const auto it = std::find_first_of(begin, end, std::begin(os::FOLDER_SEP),
+                                               std::end(os::FOLDER_SEP) - 1);
+            return it != end ? it.base() : filename;
+        }
+    }
+
     void format(const details::LogMsg& msg, const tm&, memory_buf_t& dest) override {
         if (msg.source.empty()) {
             return;
         }
-        format_helper::appendStringView(msg.source.filename, dest);
+        const char* name = basename(msg.source.filename);
+        format_helper::appendStringView(name, dest);
         dest.push_back(':');
         format_helper::appendInt(msg.source.line, dest);
     }
@@ -207,7 +224,8 @@ public:
 
         if (!msg.source.empty()) {
             dest.push_back('[');
-            format_helper::appendStringView(msg.source.filename, dest);
+            const char* short_filename = SourceLocFormatter::basename(msg.source.filename);
+            format_helper::appendStringView(short_filename, dest);
             dest.push_back(':');
             format_helper::appendInt(msg.source.line, dest);
             dest.push_back(']');
