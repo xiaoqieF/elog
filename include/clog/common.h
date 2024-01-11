@@ -4,6 +4,7 @@
 
 #include <chrono>
 #include <memory>
+#include <mutex>
 
 #include "clog/fmt/core.h"
 

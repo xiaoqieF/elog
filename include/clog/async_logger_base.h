@@ -11,8 +11,6 @@ class AsyncLoggerBase : public Logger {
     friend class details::ThreadPool;
 
 public:
-    AsyncLoggerBase(std::string name)
-        : Logger(std::move(name)) {}
     AsyncLoggerBase(std::string name, SinkPtr single_sink)
         : Logger(std::move(name), single_sink) {}
     AsyncLoggerBase(std::string name, std::initializer_list<SinkPtr> sinks)

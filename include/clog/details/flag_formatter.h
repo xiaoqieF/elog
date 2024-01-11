@@ -25,8 +25,10 @@ public:
 class LogLevelFormatter final : public FlagFormatter {
 public:
     void format(const details::LogMsg& msg, const tm&, memory_buf_t& dest) override {
+        msg.color_range_start = dest.size();
         const string_view_t level_name = getLevelName(msg.log_level);
         format_helper::appendStringView(level_name, dest);
+        msg.color_range_end = dest.size();
     }
 };
 
@@ -34,8 +36,10 @@ public:
 class SimpleLogLevelFormatter final : public FlagFormatter {
 public:
     void format(const details::LogMsg& msg, const tm&, memory_buf_t& dest) override {
+        msg.color_range_start = dest.size();
         const string_view_t level_name = SIMPLE_LEVEL_NAMES[static_cast<int>(msg.log_level)];
         format_helper::appendStringView(level_name, dest);
+        msg.color_range_end = dest.size();
     }
 };
 

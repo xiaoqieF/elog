@@ -9,8 +9,6 @@
 namespace clog {
 class Logger {
 public:
-    explicit Logger(std::string name)
-        : name_(std::move(name)) {}
     Logger(std::string name, SinkPtr single_sink)
         : name_(std::move(name)),
           sinks_{single_sink} {}
