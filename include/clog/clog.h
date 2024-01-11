@@ -5,6 +5,10 @@
 namespace clog {
 inline Logger *defaultLogger() { return LoggerFactory::instance().defaultLogger(); }
 
+inline void setDefaultLogger(std::unique_ptr<Logger> logger) {
+    LoggerFactory::instance().setDefaultLogger(std::move(logger));
+}
+
 inline void setLogLevel(LogLevel level) { defaultLogger()->setLevel(level); }
 
 inline void setPattern(const std::string &pattern) { defaultLogger()->setPattern(pattern); }
