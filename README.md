@@ -56,3 +56,5 @@ all support format flag list here:
 // set format of default logger
 clog::setPattern("[%M-%D %h:%m:%s.%f] [%L] [thread: %t] %v");
 ```
+
+see `tests/example.cpp` for more.

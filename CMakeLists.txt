@@ -16,5 +16,5 @@ ELSE()
     set(CMAKE_CXX_FLAGS "-O2")
 ENDIF()
 
-include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(${CMAKE_SOURCE_DIR}/include/clog)
 add_subdirectory(tests)
