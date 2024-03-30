@@ -83,7 +83,7 @@ void multiOutput() {
 
 int main() {
     simpleLog();
-    rollFileLog();
-    asyncLog();
-    multiOutput();
+    // rollFileLog();
+    // asyncLog();
+    // multiOutput();
 }

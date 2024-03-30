@@ -222,6 +222,11 @@ public:
         dest.push_back(']');
         dest.push_back(' ');
 
+        format_helper::appendStringView(tid_prefix, dest);
+        format_helper::appendInt(msg.thread_id, dest);
+        dest.push_back(']');
+        dest.push_back(' ');
+
         if (!msg.source.empty()) {
             dest.push_back('[');
             const char* short_filename = SourceLocFormatter::basename(msg.source.filename);
@@ -237,6 +242,8 @@ public:
 private:
     std::chrono::seconds cached_seconds_{0};
     memory_buf_t cached_time_str_;
+
+    const std::string tid_prefix{"[tid:"};
 };
 
 } // namespace details

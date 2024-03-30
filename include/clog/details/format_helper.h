@@ -39,7 +39,7 @@ inline void pad3(int n, memory_buf_t& dest) {
 }
 
 inline void pad_uint(uint32_t n, unsigned int width, memory_buf_t& dest) {
-    for (auto digits = fmt::detail::count_digits(n); digits < width; ++digits) {
+    for (unsigned int digits = fmt::detail::count_digits(n); digits < width; ++digits) {
         dest.push_back('0');
     }
     appendInt(n, dest);

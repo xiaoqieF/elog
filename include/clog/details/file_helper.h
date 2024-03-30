@@ -45,7 +45,6 @@ inline void FileHelper::open(const std::string& filename) {
 inline void FileHelper::close() {
     if (fd_) {
         ::fclose(fd_);
-        fd_ == nullptr;
     }
     written_bytes_ = 0;
 }
