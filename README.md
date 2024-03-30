@@ -35,21 +35,21 @@ CLOG_WARN("Also use default logger, so pattern and level had been set");
 use `clog::setPattern` to set log format.
 all support format flag list here:
 
-`%n`: logger name.
-`%l`: log level, such as `info`, `debug`.
-`%L`: simplified log level, such as `I`, `D`.
-`%Y`: year, such as `2001`.
-`%M`: month, such as `03`.
-`%D`: day, such as `29`.
-`%h`: hour.
-`%m`: minute.
-`%s`: second.
-`%e`: millisecond.
-`%f`: microsecond.
-`%t`: thread id.
-`%v`: log content.
-`%u`: source filename.
-`%w`: function name.
+* `%n`: logger name.
+* `%l`: log level, such as `info`, `debug`.
+* `%L`: simplified log level, such as `I`, `D`.
+* `%Y`: year, such as `2001`.
+* `%M`: month, such as `03`.
+* `%D`: day, such as `29`.
+* `%h`: hour.
+* `%m`: minute.
+* `%s`: second.
+* `%e`: millisecond.
+* `%f`: microsecond.
+* `%t`: thread id.
+* `%v`: log content.
+* `%u`: source filename.
+* `%w`: function name.
 
 
 ```c++
