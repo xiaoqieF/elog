@@ -1,8 +1,8 @@
 A simple version of spdlog
 
-support synchronize and asynchronize logger
+Support synchronize and asynchronize logger
 
-support stdout and roll file output
+Support stdout and roll file output
 
 ### simple output
 
@@ -30,10 +30,11 @@ CLOG_ERROR("use macro: {}", "hhh");
 CLOG_WARN("Also use default logger, so pattern and level had been set");
 ```
 
+Attention: **only macro log can output source info(source filename and line number)**.
+
 ### format
 
-use `clog::setPattern` to set log format.
-all support format flag list here:
+Use `clog::setPattern` to set log format. All support format flag list here:
 
 * `%n`: logger name.
 * `%l`: log level, such as `info`, `debug`.
@@ -57,4 +58,4 @@ all support format flag list here:
 clog::setPattern("[%M-%D %h:%m:%s.%f] [%L] [thread: %t] %v");
 ```
 
-see `tests/example.cpp` for more.
+See `tests/example.cpp` for more.
