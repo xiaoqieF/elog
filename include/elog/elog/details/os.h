@@ -4,9 +4,11 @@
 #include <sys/syscall.h>
 #include <unistd.h>
 
+#include <array>
 #include <ctime>
+#include <string>
 
-namespace clog {
+namespace elog {
 namespace os {
 
 static const char FOLDER_SEP[] = "/";
@@ -77,4 +79,4 @@ inline bool isColorTerminal() {
 }
 
 } // namespace os
-} // namespace clog
+} // namespace elog

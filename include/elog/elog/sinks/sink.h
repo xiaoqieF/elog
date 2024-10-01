@@ -1,10 +1,10 @@
 #pragma once
 
-#include "clog/common.h"
-#include "clog/details/log_msg.h"
-#include "clog/formatter.h"
+#include "elog/common.h"
+#include "elog/details/log_msg.h"
+#include "elog/formatter.h"
 
-namespace clog {
+namespace elog {
 namespace sinks {
 class Sink {
 public:
@@ -45,4 +45,4 @@ protected:
 };
 
 } // namespace sinks
-} // namespace clog
+} // namespace elog

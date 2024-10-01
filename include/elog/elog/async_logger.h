@@ -1,9 +1,9 @@
 #pragma once
 
-#include "clog/async_logger_base.h"
-#include "clog/details/threadpool.h"
+#include "elog/async_logger_base.h"
+#include "elog/details/threadpool.h"
 
-namespace clog {
+namespace elog {
 class AsyncLogger : public AsyncLoggerBase {
 public:
     AsyncLogger(std::string name, SinkPtr single_sink, int thread_num = 1)
@@ -35,4 +35,4 @@ inline void AsyncLogger::sinkMsgBackend(const details::LogMsg& log_msg) {
     }
 }
 
-} // namespace clog
+} // namespace elog

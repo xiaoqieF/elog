@@ -2,10 +2,10 @@
 
 #include <ctime>
 
-#include "clog/details/format_helper.h"
-#include "clog/details/log_msg.h"
+#include "elog/details/format_helper.h"
+#include "elog/details/log_msg.h"
 
-namespace clog {
+namespace elog {
 namespace details {
 class FlagFormatter {
 public:
@@ -247,4 +247,4 @@ private:
 };
 
 } // namespace details
-} // namespace clog
+} // namespace elog

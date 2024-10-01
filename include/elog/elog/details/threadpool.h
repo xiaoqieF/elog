@@ -7,11 +7,10 @@
 #include <thread>
 #include <vector>
 
-#include "clog/async_logger_base.h"
-#include "clog/details/async_log_msg.h"
-#include "clog/sinks/sink.h"
+#include "elog/async_logger_base.h"
+#include "elog/details/async_log_msg.h"
 
-namespace clog {
+namespace elog {
 namespace details {
 class ThreadPool {
 public:
@@ -109,4 +108,4 @@ inline void ThreadPool::consumeAndFlush() {
 }
 
 } // namespace details
-} // namespace clog
+} // namespace elog

@@ -4,11 +4,11 @@
 #include <string>
 #include <vector>
 
-#include "clog/details/flag_formatter.h"
-#include "clog/details/format_helper.h"
-#include "clog/details/log_msg.h"
+#include "elog/details/flag_formatter.h"
+#include "elog/details/format_helper.h"
+#include "elog/details/log_msg.h"
 
-namespace clog {
+namespace elog {
 class Formatter {
 public:
     virtual ~Formatter() = default;
@@ -148,4 +148,4 @@ inline void PatternFormatter::compilePattern(const std::string& pattern) {
     }
 }
 
-} // namespace clog
+} // namespace elog

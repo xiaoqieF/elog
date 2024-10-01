@@ -1,6 +1,6 @@
 #pragma once
 
-namespace clog {
+namespace elog {
 namespace details {
 struct NullMutex {
     void lock() const {}
@@ -8,4 +8,4 @@ struct NullMutex {
 };
 } // namespace details
 
-} // namespace clog
+} // namespace elog

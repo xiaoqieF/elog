@@ -2,9 +2,9 @@
 
 #include <mutex>
 
-#include "clog/sinks/null_mutex.h"
+#include "elog/sinks/null_mutex.h"
 
-namespace clog {
+namespace elog {
 namespace details {
 // All console sinks shared singleton mutex
 struct ConsoleMutex {
@@ -24,4 +24,4 @@ struct ConsoleNullMutex {
 };
 
 } // namespace details
-} // namespace clog
+} // namespace elog

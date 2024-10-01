@@ -1,10 +1,10 @@
 #pragma once
 
-#include "clog/formatter.h"
-#include "clog/sinks/console_mutex.h"
-#include "clog/sinks/sink.h"
+#include "elog/formatter.h"
+#include "elog/sinks/console_mutex.h"
+#include "elog/sinks/sink.h"
 
-namespace clog {
+namespace elog {
 namespace sinks {
 template <typename ConsoleMutex>
 class StdoutSink : public Sink {
@@ -24,7 +24,7 @@ public:
 
 private:
     FILE* file_;
-    std::unique_ptr<clog::Formatter> formatter_;
+    std::unique_ptr<elog::Formatter> formatter_;
     mutex_t& mutex_;
 };
 
@@ -53,4 +53,4 @@ using StdoutSinkMutex = StdoutSink<details::ConsoleMutex>;
 using StdoutSinkNullMutex = StdoutSink<details::ConsoleNullMutex>;
 
 } // namespace sinks
-} // namespace clog
+} // namespace elog

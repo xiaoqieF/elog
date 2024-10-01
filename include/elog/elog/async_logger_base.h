@@ -1,8 +1,8 @@
 #pragma once
 
-#include "clog/logger.h"
+#include "elog/logger.h"
 
-namespace clog {
+namespace elog {
 namespace details {
 class ThreadPool;
 }
@@ -24,4 +24,4 @@ protected:
     // post log to threadpool
     virtual void enqueueMsg(const details::LogMsg& log_msg) = 0;
 };
-} // namespace clog
+} // namespace elog

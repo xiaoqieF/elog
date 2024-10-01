@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
-project(clog LANGUAGES CXX)
+project(elog LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -16,5 +16,5 @@ ELSE()
     set(CMAKE_CXX_FLAGS "-O2")
 ENDIF()
 
-include_directories(${CMAKE_SOURCE_DIR}/include/clog)
+include_directories(${CMAKE_SOURCE_DIR}/include/elog)
 add_subdirectory(tests)

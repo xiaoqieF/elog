@@ -1,9 +1,9 @@
 #pragma once
 
-#include "clog/common.h"
-#include "clog/details/os.h"
+#include "elog/common.h"
+#include "elog/details/os.h"
 
-namespace clog {
+namespace elog {
 namespace details {
 struct LogMsg {
     LogMsg() = default;
@@ -54,4 +54,4 @@ inline LogMsg::LogMsg(string_view_t logger_name, LogLevel level, string_view_t m
     : LogMsg(LogClock::now(), SourceLocation{}, logger_name, level, msg) {}
 
 } // namespace details
-} // namespace clog
+} // namespace elog

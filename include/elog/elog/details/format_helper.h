@@ -1,8 +1,8 @@
 #pragma once
 
-#include "clog/common.h"
+#include "elog/common.h"
 
-namespace clog {
+namespace elog {
 namespace details {
 namespace format_helper {
 
@@ -56,4 +56,4 @@ inline ToDuration timeFraction(LogClock::time_point tp) {
 
 } // namespace format_helper
 } // namespace details
-} // namespace clog
+} // namespace elog

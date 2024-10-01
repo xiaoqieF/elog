@@ -8,33 +8,33 @@ Support stdout and roll file output
 
 ```c++
 #include <vector>
-#include "clog/clog.h"
+#include "elog/elog.h"
 
 // synchronize log, output to terminal
 // which use default logger
-clog::info("hello world. This use default logger");
-clog::debug("you can use format like {}, number:{:.2f}", "fmtlib", 12.2311);
+elog::info("hello world. This use default logger");
+elog::debug("you can use format like {}, number:{:.2f}", "fmtlib", 12.2311);
 // set log level
-clog::setLogLevel(clog::LogLevel::INFO);
-clog::debug("I will not be shown");
+elog::setLogLevel(elog::LogLevel::INFO);
+elog::debug("I will not be shown");
 // use fmtlib 
 std::vector<int> nums{1, 2, 3, 4};
-clog::error("vector nums: [{}]", fmt::join(nums, ", "));
+elog::error("vector nums: [{}]", fmt::join(nums, ", "));
 
 // you can also set output pattern
-clog::setPattern("[%M-%D %h:%m:%s.%f] [%L] [thread: %t] %v");
-clog::info("change format");
+elog::setPattern("[%M-%D %h:%m:%s.%f] [%L] [thread: %t] %v");
+elog::info("change format");
 
 // you can also use macro to log
-CLOG_ERROR("use macro: {}", "hhh");
-CLOG_WARN("Also use default logger, so pattern and level had been set");
+ELOG_ERROR("use macro: {}", "hhh");
+ELOG_WARN("Also use default logger, so pattern and level had been set");
 ```
 
 Attention: **only macro log can output source info(source filename and line number)**.
 
 ### format
 
-Use `clog::setPattern` to set log format. All support format flag list here:
+Use `elog::setPattern` to set log format. All support format flag list here:
 
 * `%n`: logger name.
 * `%l`: log level, such as `info`, `debug`.
@@ -55,7 +55,7 @@ Use `clog::setPattern` to set log format. All support format flag list here:
 
 ```c++
 // set format of default logger
-clog::setPattern("[%M-%D %h:%m:%s.%f] [%L] [thread: %t] %v");
+elog::setPattern("[%M-%D %h:%m:%s.%f] [%L] [thread: %t] %v");
 ```
 
 See `tests/example.cpp` for more.

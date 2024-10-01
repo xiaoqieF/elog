@@ -1,11 +1,11 @@
 #pragma once
 
-#include "clog/async_logger.h"
-#include "clog/common.h"
-#include "clog/logger.h"
-#include "clog/sinks/std_color_sink.h"
+#include "elog/async_logger.h"
+#include "elog/common.h"
+#include "elog/logger.h"
+#include "elog/sinks/std_color_sink.h"
 
-namespace clog {
+namespace elog {
 
 namespace sync_factory {
 template <typename Sink, typename... SinkArgs>
@@ -38,4 +38,4 @@ private:
     std::unique_ptr<Logger> default_logger_;
 };
 
-} // namespace clog
+} // namespace elog

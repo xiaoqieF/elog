@@ -1,8 +1,8 @@
 #pragma once
 
-#include "clog/logger_factory.h"
+#include "elog/logger_factory.h"
 
-namespace clog {
+namespace elog {
 inline Logger *defaultLogger() { return LoggerFactory::instance().defaultLogger(); }
 
 inline void setDefaultLogger(std::unique_ptr<Logger> logger) {
@@ -63,17 +63,17 @@ void error(const T &msg) {
     defaultLogger()->error(msg);
 }
 
-#ifndef CLOG_NO_SOURCE_LOC
-    #define CLOG_LOG(logger, level, ...) \
-        (logger)->log(clog::SourceLocation{__FILE__, __LINE__, __FUNCTION__}, level, __VA_ARGS__)
+#ifndef ELOG_NO_SOURCE_LOC
+    #define ELOG_LOG(logger, level, ...) \
+        (logger)->log(elog::SourceLocation{__FILE__, __LINE__, __FUNCTION__}, level, __VA_ARGS__)
 #else
-    #define CLOG_LOG(logger, level, ...) (logger)->log(clog::SourceLocation{}, level, __VA_ARGS__)
+    #define ELOG_LOG(logger, level, ...) (logger)->log(elog::SourceLocation{}, level, __VA_ARGS__)
 #endif
 
-#define CLOG_TRACE(...) CLOG_LOG(clog::defaultLogger(), clog::LogLevel::TRACE, __VA_ARGS__)
-#define CLOG_DEBUG(...) CLOG_LOG(clog::defaultLogger(), clog::LogLevel::DEBUG, __VA_ARGS__)
-#define CLOG_INFO(...)  CLOG_LOG(clog::defaultLogger(), clog::LogLevel::INFO, __VA_ARGS__)
-#define CLOG_WARN(...)  CLOG_LOG(clog::defaultLogger(), clog::LogLevel::WARN, __VA_ARGS__)
-#define CLOG_ERROR(...) CLOG_LOG(clog::defaultLogger(), clog::LogLevel::ERROR, __VA_ARGS__)
+#define ELOG_TRACE(...) ELOG_LOG(elog::defaultLogger(), elog::LogLevel::TRACE, __VA_ARGS__)
+#define ELOG_DEBUG(...) ELOG_LOG(elog::defaultLogger(), elog::LogLevel::DEBUG, __VA_ARGS__)
+#define ELOG_INFO(...)  ELOG_LOG(elog::defaultLogger(), elog::LogLevel::INFO, __VA_ARGS__)
+#define ELOG_WARN(...)  ELOG_LOG(elog::defaultLogger(), elog::LogLevel::WARN, __VA_ARGS__)
+#define ELOG_ERROR(...) ELOG_LOG(elog::defaultLogger(), elog::LogLevel::ERROR, __VA_ARGS__)
 
-} // namespace clog
+} // namespace elog

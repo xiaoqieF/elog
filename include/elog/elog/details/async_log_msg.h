@@ -1,8 +1,8 @@
 #pragma once
 
-#include "clog/details/log_msg.h"
+#include "elog/details/log_msg.h"
 
-namespace clog {
+namespace elog {
 class AsyncLoggerBase;
 namespace details {
 struct AsyncMsg {
@@ -43,4 +43,4 @@ struct AsyncMsg {
 };
 } // namespace details
 
-} // namespace clog
+} // namespace elog

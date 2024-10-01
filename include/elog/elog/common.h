@@ -1,15 +1,15 @@
 #pragma once
 
 #define FMT_HEADER_ONLY // use fmtlib header only
-// #define CLOG_NO_SOURCE_LOC
+// #define ELOG_NO_SOURCE_LOC
 
 #include <chrono>
 #include <memory>
 #include <mutex>
 
-#include "clog/fmt/core.h"
+#include "elog/fmt/core.h"
 
-namespace clog {
+namespace elog {
 using string_view_t = fmt::basic_string_view<char>;
 using memory_buf_t = fmt::basic_memory_buffer<char, 250>;
 using LogClock = std::chrono::system_clock;
@@ -24,19 +24,19 @@ using format_string_t = fmt::format_string<Args...>;
 
 enum class LogLevel : int { TRACE = 0, DEBUG = 1, INFO = 2, WARN = 3, ERROR = 4, NUM_LEVELS = 5 };
 
-#define CLOG_LEVEL_NAME_TRACE   clog::string_view_t("trace", 5)
-#define CLOG_LEVEL_NAME_DEBUG   clog::string_view_t("debug", 5)
-#define CLOG_LEVEL_NAME_INFO    clog::string_view_t("info", 4)
-#define CLOG_LEVEL_NAME_WARNING clog::string_view_t("warning", 7)
-#define CLOG_LEVEL_NAME_ERROR   clog::string_view_t("error", 5)
+#define ELOG_LEVEL_NAME_TRACE   elog::string_view_t("trace", 5)
+#define ELOG_LEVEL_NAME_DEBUG   elog::string_view_t("debug", 5)
+#define ELOG_LEVEL_NAME_INFO    elog::string_view_t("info", 4)
+#define ELOG_LEVEL_NAME_WARNING elog::string_view_t("warning", 7)
+#define ELOG_LEVEL_NAME_ERROR   elog::string_view_t("error", 5)
 
 #if __cplusplus >= 201703L
 constexpr
 #endif
-    static string_view_t level_string_views[]{CLOG_LEVEL_NAME_TRACE, CLOG_LEVEL_NAME_DEBUG,
-                                              CLOG_LEVEL_NAME_INFO, CLOG_LEVEL_NAME_WARNING,
-                                              CLOG_LEVEL_NAME_ERROR};
-const char* SIMPLE_LEVEL_NAMES[]{"T", "D", "I", "W", "E"};
+    static string_view_t level_string_views[]{ELOG_LEVEL_NAME_TRACE, ELOG_LEVEL_NAME_DEBUG,
+                                              ELOG_LEVEL_NAME_INFO, ELOG_LEVEL_NAME_WARNING,
+                                              ELOG_LEVEL_NAME_ERROR};
+static const char* SIMPLE_LEVEL_NAMES[]{"T", "D", "I", "W", "E"};
 
 inline const string_view_t getLevelName(LogLevel log_level) {
     return level_string_views[static_cast<int>(log_level)];
@@ -69,4 +69,4 @@ struct SourceLocation {
     const char* function_name = nullptr;
 };
 
-} // namespace clog
+} // namespace elog

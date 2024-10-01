@@ -1,10 +1,10 @@
 #pragma once
-#include "clog/details/file_helper.h"
-#include "clog/details/format_helper.h"
-#include "clog/sinks/null_mutex.h"
-#include "clog/sinks/sink.h"
+#include "elog/details/file_helper.h"
+#include "elog/details/format_helper.h"
+#include "elog/sinks/null_mutex.h"
+#include "elog/sinks/sink.h"
 
-namespace clog {
+namespace elog {
 namespace sinks {
 template <typename Mutex>
 class RotatingFileSink final : public BaseSink<Mutex> {
@@ -79,4 +79,4 @@ using RotatingFileSinkMutex = RotatingFileSink<std::mutex>;
 using RotatingFileSinkNullMutex = RotatingFileSink<details::NullMutex>;
 
 } // namespace sinks
-} // namespace clog
+} // namespace elog

@@ -3,10 +3,10 @@
 #include <string>
 #include <vector>
 
-#include "clog/common.h"
-#include "clog/sinks/sink.h"
+#include "elog/common.h"
+#include "elog/sinks/sink.h"
 
-namespace clog {
+namespace elog {
 class Logger {
 public:
     Logger(std::string name, SinkPtr single_sink)
@@ -107,7 +107,17 @@ public:
 protected:
     template <typename... Args>
     void log_(SourceLocation loc, LogLevel msg_level, string_view_t fmt, Args&&... args);
-    virtual void sinkMsg(const details::LogMsg& log_msg);
+    // by default, sink msg synchronously
+    virtual void sinkMsg(const details::LogMsg& log_msg) {
+        for (auto& sink : sinks_) {
+            if (sink->shouldLog(log_msg.log_level)) {
+                sink->log(log_msg);
+            }
+            if (log_msg.log_level >= flush_level_) {
+                sink->flush();
+            }
+        }
+    }
 
     std::string name_;
     std::vector<SinkPtr> sinks_;
@@ -129,15 +139,4 @@ void Logger::log_(SourceLocation loc, LogLevel msg_level, string_view_t fmt, Arg
     sinkMsg(log_msg);
 }
 
-void Logger::sinkMsg(const details::LogMsg& log_msg) {
-    for (auto& sink : sinks_) {
-        if (sink->shouldLog(log_msg.log_level)) {
-            sink->log(log_msg);
-        }
-        if (log_msg.log_level >= flush_level_) {
-            sink->flush();
-        }
-    }
-}
-
-} // namespace clog
+} // namespace elog

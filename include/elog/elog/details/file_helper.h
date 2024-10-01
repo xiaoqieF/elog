@@ -2,10 +2,10 @@
 
 #include <iostream>
 
-#include "clog/common.h"
-#include "clog/details/os.h"
+#include "elog/common.h"
+#include "elog/details/os.h"
 
-namespace clog {
+namespace elog {
 namespace details {
 class FileHelper {
 public:
@@ -64,4 +64,4 @@ inline void FileHelper::flush() {
 }
 
 } // namespace details
-} // namespace clog
+} // namespace elog

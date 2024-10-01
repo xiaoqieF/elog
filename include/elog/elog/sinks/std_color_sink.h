@@ -1,11 +1,11 @@
 #pragma once
 
-#include "clog/details/log_msg.h"
-#include "clog/formatter.h"
-#include "clog/sinks/console_mutex.h"
-#include "clog/sinks/sink.h"
+#include "elog/details/log_msg.h"
+#include "elog/formatter.h"
+#include "elog/sinks/console_mutex.h"
+#include "elog/sinks/sink.h"
 
-namespace clog {
+namespace elog {
 namespace sinks {
 template <typename ConsoleMutex>
 class StdColorSink : public Sink {
@@ -83,4 +83,4 @@ using StdColorSinkMutex = StdColorSink<details::ConsoleMutex>;
 using StdColorSinkNullMutex = StdColorSink<details::ConsoleNullMutex>;
 
 } // namespace sinks
-} // namespace clog
+} // namespace elog
