@@ -1,5 +1,6 @@
 #pragma once
 
+#include <chrono>
 #include <ctime>
 
 #include "elog/details/format_helper.h"
@@ -182,7 +183,7 @@ class FullFormatter final : public FlagFormatter {
 public:
     void format(const details::LogMsg& msg, const tm& tm_time, memory_buf_t& dest) {
         using std::chrono::duration_cast;
-        using std::chrono::milliseconds;
+        using std::chrono::microseconds;
         using std::chrono::seconds;
 
         auto duration = msg.time.time_since_epoch();
@@ -208,8 +209,8 @@ public:
         }
         dest.append(cached_time_str_.begin(), cached_time_str_.end());
 
-        auto mills = format_helper::timeFraction<milliseconds>(msg.time);
-        format_helper::pad3(static_cast<uint32_t>(mills.count()), dest);
+        auto micro = format_helper::timeFraction<microseconds>(msg.time);
+        format_helper::pad_uint(static_cast<uint32_t>(micro.count()), 6, dest);
         dest.push_back(']');
         dest.push_back(' ');
 

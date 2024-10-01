@@ -58,25 +58,28 @@ private:
     std::condition_variable flush_cv_;
     std::vector<std::thread> threads_;
     std::thread flush_thread_;
-    std::deque<details::AsyncMsg> buffer_;
+    std::vector<details::AsyncMsg> buffer_;
     std::atomic_bool running_{false};
     Logger* own_logger_{nullptr};
     int flush_interval_;
 };
 
 inline void ThreadPool::threadLoop() {
+    // when multi-consumer, log could be out-of-order
     details::AsyncMsg async_msg;
     while (running_) {
+        std::vector<AsyncMsg> tmp;
         {
             std::unique_lock<std::mutex> lock(queue_mutex_);
             queue_cv_.wait(lock, [this]() { return !this->running_ || !this->buffer_.empty(); });
             if (!running_) {
                 break;
             }
-            async_msg = std::move(buffer_.front());
-            buffer_.pop_front();
+            buffer_.swap(tmp);
         }
-        async_msg.own_logger->sinkMsgBackend(async_msg.msg);
+        for (auto& async_msg : tmp) {
+            async_msg.own_logger->sinkMsgBackend(async_msg.msg);
+        }
     }
     // When program exit, ensure all logs be consumed
     consumeAndFlush();

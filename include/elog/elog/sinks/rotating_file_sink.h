@@ -9,7 +9,7 @@ namespace sinks {
 template <typename Mutex>
 class RotatingFileSink final : public BaseSink<Mutex> {
 public:
-    RotatingFileSink(std::string base_filename, size_t max_size = 10000 * 1024);
+    RotatingFileSink(std::string base_filename, size_t max_size = 20 * 1024 * 1024);
 
     RotatingFileSink(const RotatingFileSink&) = delete;
     RotatingFileSink& operator=(const RotatingFileSink&) = delete;

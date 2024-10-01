@@ -59,3 +59,12 @@ elog::setPattern("[%M-%D %h:%m:%s.%f] [%L] [thread: %t] %v");
 ```
 
 See `tests/example.cpp` for more.
+
+### async log
+
+Create async_logger through async_factory, async_logger.
+
+```c++
+    auto logger = elog::async_factory::create<elog::sinks::RotatingFileSinkMutex>("logger_name",
+                                                                                  "log/test.log");
+```

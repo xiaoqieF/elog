@@ -4,6 +4,8 @@
 #include "elog/details/threadpool.h"
 
 namespace elog {
+// use async logger with thread_pool of only 1 thread, logs in different threads may be out-of-order
+// when thread_num > 1, logs in the same thread maybe out-of-order
 class AsyncLogger : public AsyncLoggerBase {
 public:
     AsyncLogger(std::string name, SinkPtr single_sink, int thread_num = 1)

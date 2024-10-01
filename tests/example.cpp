@@ -82,8 +82,8 @@ void multiOutput() {
 }
 
 int main() {
-    // simpleLog();
+    simpleLog();
     // rollFileLog();
-    asyncLog();
+    // asyncLog();
     // multiOutput();
 }
