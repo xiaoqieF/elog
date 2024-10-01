@@ -62,7 +62,10 @@ See `tests/example.cpp` for more.
 
 ### async log
 
-Create async_logger through async_factory, async_logger.
+Create async_logger through async_factory.
+By default, async_logger use 1 backend thread to sink log into disk or stdout,
+you can change thread_num param of `async_factory::create` to set more threads,
+but when threads more than 1, logs could be out-of-order !
 
 ```c++
     auto logger = elog::async_factory::create<elog::sinks::RotatingFileSinkMutex>("logger_name",
